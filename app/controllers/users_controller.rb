@@ -12,7 +12,13 @@ class UsersController < ApplicationController
 
   # POST: /users
   post "/users" do
-    redirect "/users"
+    @user = User.new(:username => params[:username], :password => params[:password])
+
+    if @user.save
+      redirect "/users/#{@user.id}"
+    else
+      redirect "/failure"
+    end
   end
 
   # GET: /users/5
@@ -34,4 +40,16 @@ class UsersController < ApplicationController
   delete "/users/:id/delete" do
     redirect "/users"
   end
+
+  post "/login" do
+    @user = User.find_by(:username => params[:username])
+
+    if @user && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      redirect "/success"
+    else
+      redirect "/failure"
+    end
+  end
+
 end
