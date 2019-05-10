@@ -16,13 +16,15 @@ class WorkoutsController < ApplicationController
 
   # POST: /workouts
   post "/workouts" do
-    @workout=Workout.new(date: params[:workout][:date], bodyweight: params[:workout][:bodyweight], user_id: current_user.id)
-    @workout.save
-    params[:workout][:exercises].each do |details|
-      if details[:name]!= ""
-        exercise=Exercise.new(details)
-        exercise.workout_id=@workout.id
-        exercise.save
+    if params[:workout][:date] != ""
+      @workout=Workout.new(date: params[:workout][:date], bodyweight: params[:workout][:bodyweight], user_id: current_user.id)
+      @workout.save
+      params[:workout][:exercises].each do |details|
+        if details[:name]!= "" && details[:weight]!= "" && details[:reps]!= "" && details[:sets]!= ""
+          exercise=Exercise.new(details)
+          exercise.workout_id=@workout.id
+          exercise.save
+        end
       end
     end
 
@@ -35,6 +37,7 @@ class WorkoutsController < ApplicationController
 
   # GET: /workouts/5
   get "/workouts/:id" do
+    @workout=Workout.find(params[:id])
     erb :"/workouts/show.html"
   end
 

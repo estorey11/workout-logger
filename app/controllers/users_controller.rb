@@ -1,5 +1,6 @@
-class UsersController < ApplicationController
+require 'pry'
 
+class UsersController < ApplicationController
 
   # GET: /users
   get "/users" do
@@ -19,14 +20,19 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect "/users/#{@user.id}"
     else
-      redirect "/failure"
+      redirect "/"
     end
   end
 
   # GET: /users/5
   get "/users/:id" do
-    @user=current_user
-    erb :"/users/show.html"
+    if logged_in?
+      @user=current_user
+      erb :"/users/show.html"
+    else
+      binding.pry
+      redirect '/'
+    end
   end
 
   # GET: /users/5/edit
@@ -51,7 +57,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect "/users/#{@user.id}"
     else
-      redirect "/failure"
+      redirect "/logout"
     end
   end
 

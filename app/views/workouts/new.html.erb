@@ -4,24 +4,12 @@
   Date: <input type="date" name="workout[date]"><br>
   Bodyweight: <input type="number" name="workout[bodyweight]"><br><br>
 
-  Exercise: <input type="text" name="workout[exercises][][name]"><br>
-  Weight: <input type="number" name="workout[exercises][][weight]"><br>
-  Sets: <input type="number" name="workout[exercises][][sets]"><br>
-  Reps: <input type="number" name="workout[exercises][][reps]"><br><br>
-
-  Exercise: <input type="text" name="workout[exercises][][name]"><br>
-  Weight: <input type="number" name="workout[exercises][][weight]"><br>
-  Sets: <input type="number" name="workout[exercises][][sets]"><br>
-  Reps: <input type="number" name="workout[exercises][][reps]"><br><br>
-
-  Exercise: <input type="text" name="workout[exercises][][name]"><br>
-  Weight: <input type="number" name="workout[exercises][][weight]"><br>
-  Sets: <input type="number" name="workout[exercises][][sets]"><br>
-  Reps: <input type="number" name="workout[exercises][][reps]"><br><br>
-
-  Exercise: <input type="text" name="workout[exercises][][name]"><br>
-  Weight: <input type="number" name="workout[exercises][][weight]"><br>
-  Sets: <input type="number" name="workout[exercises][][sets]"><br>
-  Reps: <input type="number" name="workout[exercises][][reps]"><br><br>
+  <% 10.times do %>
+    Exercise: <input type="text" name="workout[exercises][][name]"><br>
+    Weight: <input type="number" name="workout[exercises][][weight]"><br>
+    Sets: <input type="number" name="workout[exercises][][sets]"><br>
+    Reps: <input type="number" name="workout[exercises][][reps]"><br><br>
+  <% end %>
+  
   <input type="submit">
 </form>

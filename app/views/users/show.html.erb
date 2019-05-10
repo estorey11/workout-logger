@@ -1,5 +1,12 @@
 <h1><%=@user.username%>'s Profile Page</h1>
-<a href="/workouts/new">Add Workout</a>
+<br><br>
+
+<h2>Best Lifts:</h2><br>
+
+
+
+<a href="/workouts/new">Add Workout</a><br>
+
 <h2>Previous Workouts:</h2>
 <%@user.workouts.each do |workout|%>
   Date: <%=workout.date%><br>

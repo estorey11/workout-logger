@@ -1,1 +1,12 @@
-<h1>This is the show page for an individual instance of your model.</h1>
+<h1>Workout on <%=@workout.date%></h1>
+<p>Bodyweight: <%=@workout.bodyweight%></p>
+<%@workout.exercises.each do |exercise|%>
+  <p>
+    Exercise: <%=exercise.name%><br>
+    Weight: <%=exercise.weight%><br>
+    Sets: <%=exercise.sets%><br>
+    Reps: <%=exercise.reps%>
+  </p>
+<%end%>
+
+<a href="/">Back to Profile</a>
