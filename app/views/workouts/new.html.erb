@@ -1,1 +1,27 @@
-<h1>Insert the form to create a new instance of your model.</h1>
+<h1>Log a new workout!</h1><br>
+
+<form action="/workouts" method="post">
+  Date: <input type="date" name="workout[date]"><br>
+  Bodyweight: <input type="number" name="workout[bodyweight]"><br><br>
+
+  Exercise: <input type="text" name="workout[exercises][][name]"><br>
+  Weight: <input type="number" name="workout[exercises][][weight]"><br>
+  Sets: <input type="number" name="workout[exercises][][sets]"><br>
+  Reps: <input type="number" name="workout[exercises][][reps]"><br><br>
+
+  Exercise: <input type="text" name="workout[exercises][][name]"><br>
+  Weight: <input type="number" name="workout[exercises][][weight]"><br>
+  Sets: <input type="number" name="workout[exercises][][sets]"><br>
+  Reps: <input type="number" name="workout[exercises][][reps]"><br><br>
+
+  Exercise: <input type="text" name="workout[exercises][][name]"><br>
+  Weight: <input type="number" name="workout[exercises][][weight]"><br>
+  Sets: <input type="number" name="workout[exercises][][sets]"><br>
+  Reps: <input type="number" name="workout[exercises][][reps]"><br><br>
+
+  Exercise: <input type="text" name="workout[exercises][][name]"><br>
+  Weight: <input type="number" name="workout[exercises][][weight]"><br>
+  Sets: <input type="number" name="workout[exercises][][sets]"><br>
+  Reps: <input type="number" name="workout[exercises][][reps]"><br><br>
+  <input type="submit">
+</form>

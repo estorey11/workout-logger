@@ -1,1 +1,13 @@
-<h1>This is the show page for an individual instance of your model.</h1>
+<h1><%=@user.username%>'s Profile Page</h1>
+<a href="/workouts/new">Add Workout</a>
+<h2>Previous Workouts:</h2>
+<%@user.workouts.each do |workout|%>
+  Date: <%=workout.date%><br>
+  Bodyweight: <%=workout.bodyweight%><br>
+  Exercises: <%workout.exercises.each_with_index do |exercise, i|%>
+                <%=exercise.name%>
+                <%="," if workout.exercises.size > i+1%>
+              <%end%>
+  <br>
+  <a href="/workouts/<%=workout.id%>">View Workout</a><br><br>
+<%end%>

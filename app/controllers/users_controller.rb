@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 
+
   # GET: /users
   get "/users" do
     erb :"/users/index.html"
@@ -15,6 +16,7 @@ class UsersController < ApplicationController
     @user = User.new(:username => params[:username], :password => params[:password])
 
     if @user.save
+      session[:user_id] = @user.id
       redirect "/users/#{@user.id}"
     else
       redirect "/failure"
@@ -23,6 +25,7 @@ class UsersController < ApplicationController
 
   # GET: /users/5
   get "/users/:id" do
+    @user=current_user
     erb :"/users/show.html"
   end
 
@@ -46,10 +49,15 @@ class UsersController < ApplicationController
 
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      redirect "/success"
+      redirect "/users/#{@user.id}"
     else
       redirect "/failure"
     end
+  end
+
+  get "/logout" do
+    session.destroy
+    redirect '/'
   end
 
 end

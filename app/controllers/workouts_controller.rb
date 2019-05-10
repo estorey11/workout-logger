@@ -1,7 +1,11 @@
+require 'pry'
+
 class WorkoutsController < ApplicationController
 
   # GET: /workouts
   get "/workouts" do
+    @user=current_user
+    @workouts=Workout.all
     erb :"/workouts/index.html"
   end
 
@@ -12,6 +16,20 @@ class WorkoutsController < ApplicationController
 
   # POST: /workouts
   post "/workouts" do
+    @workout=Workout.new(date: params[:workout][:date], bodyweight: params[:workout][:bodyweight], user_id: current_user.id)
+    @workout.save
+    params[:workout][:exercises].each do |details|
+      if details[:name]!= ""
+        exercise=Exercise.new(details)
+        exercise.workout_id=@workout.id
+        exercise.save
+      end
+    end
+
+    if logged_in?
+      redirect "/users/#{current_user.id}"
+    end
+
     redirect "/workouts"
   end
 

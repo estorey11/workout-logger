@@ -1,1 +1,13 @@
-<h1>This is the Model's index page.</h1>
+<h1></h1>
+<p>
+  <%@workouts.each do |workout|%>
+    Date: <%=workout.date%><br>
+    Bodyweight: <%=workout.bodyweight%><br>
+    Exercises: <%workout.exercises.each_with_index do |exercise, i|%>
+                  <%=exercise.name%>
+                  <%="," if workout.exercises.size > i+1%>
+                <%end%>
+    <br>
+    <a href="/workouts/<%=workout.id%>">View Workout</a><br><br>
+  <%end%>
+</p>
