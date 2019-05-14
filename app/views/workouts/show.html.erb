@@ -1,12 +1,14 @@
-<h1>Workout on <%=@workout.date%></h1>
-<p>Bodyweight: <%=@workout.bodyweight%></p>
-<%@workout.exercises.each do |exercise|%>
+<h1>Workout on <%= @workout.date %></h1>
+<p>Bodyweight: <%= @workout.bodyweight %></p>
+<% @workout.exercises.each do |exercise| %>
   <p>
-    Exercise: <%=exercise.name%><br>
-    Weight: <%=exercise.weight%><br>
-    Sets: <%=exercise.sets%><br>
-    Reps: <%=exercise.reps%>
+    Exercise: <%= exercise.name %><br>
+    Weight: <%= exercise.weight %><br>
+    Sets: <%= exercise.sets %><br>
+    Reps: <%= exercise.reps %>
   </p>
-<%end%>
+<% end %>
+<a href= <%= "/workouts/#{@workout.id}/edit" %> >Edit Workout</a><br>
+<a href= <%= "/workouts/#{@workout.id}/delete" %> >Delete Workout</a><br>
 
 <a href="/">Back to Profile</a>

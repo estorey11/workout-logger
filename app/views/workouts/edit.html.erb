@@ -1,1 +1,16 @@
-<h1>Insert the form to edit an instance of your model here.</h1>
+<h1>Edit Workout</h1>
+
+<form method="post" action="/workouts/<%=@workout.id%>">
+  <input id="hidden" type="hidden" name="_method" value="PATCH">
+  Date: <input type="date" name="workout[date]" value="<%= @workout.date %>"><br>
+  Bodyweight: <input type="number" name="workout[bodyweight]" value="<%= @workout.bodyweight %>"><br><br>
+
+  <% @workout.exercises.each_with_index do |exercise, i|%>
+    Exercise: <input type="text" name=<%= "workout[exercises][][name]" %> value="<%= exercise.name %>"><br>
+    Weight: <input type="number" name=<%= "workout[exercises][][weight]" %> value="<%= exercise.weight %>"><br>
+    Sets: <input type="number" name=<%= "workout[exercises][][sets]" %> value="<%= exercise.sets %>"><br>
+    Reps: <input type="number" name=<%= "workout[exercises][][reps]" %> value="<%= exercise.reps %>"><br><br>
+  <% end %>
+
+  <input type="submit">
+</form>
