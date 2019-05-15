@@ -58,7 +58,7 @@ class WorkoutsController < ApplicationController
     else
       redirect '/'
     end
-    
+
   end
 
   # PATCH: /workouts/5
@@ -87,7 +87,10 @@ class WorkoutsController < ApplicationController
             exercise.save
           end
 
+        elsif @workout.exercises[i]
+          @workout.exercises[i].delete
         end
+        
       end
     end
 

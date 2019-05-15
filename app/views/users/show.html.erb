@@ -2,10 +2,15 @@
 <br><br>
 
 <h2>Best Lifts:</h2><br>
+<% if @best_lifts==[] %>
+  <p>You haven't logged any workouts yet!</p>
+<% else %>
+  <%@best_lifts.each do |lift|%>
 
+  <%= lift.name %>: <%= lift.weight %> for <%= lift.reps %> reps at a bodyweight of <%= lift.workout.bodyweight %> on <%= lift.workout.date %><br><br>
 
-
-<a href="/workouts/new">Add Workout</a><br>
+  <% end %>
+<% end %>
 
 <h2>Previous Workouts:</h2>
 <%@user.workouts.each do |workout|%>
@@ -18,3 +23,5 @@
   <br>
   <a href="/workouts/<%=workout.id%>">View Workout</a><br><br>
 <%end%>
+
+<a href="/workouts/new">Add Workout</a><br>

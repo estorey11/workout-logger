@@ -14,13 +14,19 @@ class UsersController < ApplicationController
 
   # POST: /users
   post "/users" do
-    @user = User.new(:username => params[:username], :password => params[:password])
-
-    if @user.save
-      session[:user_id] = @user.id
-      redirect "/users/#{@user.id}"
-    else
+    if params[:username] == "" || User.find_by(username: params[:username])
       redirect "/"
+    else
+
+      @user = User.new(:username => params[:username], :password => params[:password])
+
+      if @user.save
+        session[:user_id] = @user.id
+        redirect "/users/#{@user.id}"
+      else
+        redirect "/"
+      end
+
     end
   end
 
@@ -28,6 +34,13 @@ class UsersController < ApplicationController
   get "/users/:id" do
     if logged_in?
       @user=current_user
+      @ordered_lifts=@user.exercises.order(weight: :desc)
+      @best_lifts=[]
+      @ordered_lifts.each do |lift|
+        if !@best_lifts.any? {|best_lift| best_lift.name == lift.name}
+          @best_lifts << lift
+        end
+      end
       erb :"/users/show.html"
     else
       redirect '/'
