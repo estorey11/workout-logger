@@ -7,7 +7,7 @@
 <% else %>
   <%@best_lifts.each do |lift|%>
 
-  <%= lift.name %>: <%= lift.weight %> for <%= lift.reps %> reps at a bodyweight of <%= lift.workout.bodyweight %> on <%= lift.workout.date %><br><br>
+  <%= lift.name %>: <%= lift.weight %> for <%= lift.reps %> rep(s) at a bodyweight of <%= lift.workout.bodyweight %> on <%= lift.workout.date %><br><br>
 
   <% end %>
 <% end %>
