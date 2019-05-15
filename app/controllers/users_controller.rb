@@ -30,7 +30,6 @@ class UsersController < ApplicationController
       @user=current_user
       erb :"/users/show.html"
     else
-      binding.pry
       redirect '/'
     end
   end

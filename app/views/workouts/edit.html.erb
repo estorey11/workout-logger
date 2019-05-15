@@ -5,11 +5,20 @@
   Date: <input type="date" name="workout[date]" value="<%= @workout.date %>"><br>
   Bodyweight: <input type="number" name="workout[bodyweight]" value="<%= @workout.bodyweight %>"><br><br>
 
+  <% remainder=10 %>
   <% @workout.exercises.each_with_index do |exercise, i|%>
+  <% remainder-=1 %>
     Exercise: <input type="text" name=<%= "workout[exercises][][name]" %> value="<%= exercise.name %>"><br>
     Weight: <input type="number" name=<%= "workout[exercises][][weight]" %> value="<%= exercise.weight %>"><br>
     Sets: <input type="number" name=<%= "workout[exercises][][sets]" %> value="<%= exercise.sets %>"><br>
     Reps: <input type="number" name=<%= "workout[exercises][][reps]" %> value="<%= exercise.reps %>"><br><br>
+  <% end %>
+
+  <% remainder.times do %>
+    Exercise: <input type="text" name="workout[exercises][][name]"><br>
+    Weight: <input type="number" name="workout[exercises][][weight]"><br>
+    Sets: <input type="number" name="workout[exercises][][sets]"><br>
+    Reps: <input type="number" name="workout[exercises][][reps]"><br><br>
   <% end %>
 
   <input type="submit">

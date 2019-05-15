@@ -40,13 +40,25 @@ class WorkoutsController < ApplicationController
   # GET: /workouts/5
   get "/workouts/:id" do
     @workout=Workout.find(params[:id])
-    erb :"/workouts/show.html"
+
+    if logged_in? && @workout.user.id == current_user.id
+      erb :"/workouts/show.html"
+    else
+      redirect '/'
+    end
+
   end
 
   # GET: /workouts/5/edit
   get "/workouts/:id/edit" do
     @workout=Workout.find(params[:id])
-    erb :"/workouts/edit.html"
+
+    if logged_in? && @workout.user.id == current_user.id
+      erb :"/workouts/edit.html"
+    else
+      redirect '/'
+    end
+    
   end
 
   # PATCH: /workouts/5
@@ -85,11 +97,22 @@ class WorkoutsController < ApplicationController
 
   # DELETE: /workouts/5/delete
   delete "/workouts/:id/delete" do
-    @workout = Workout.find(params[:id])
-      if @workout && @workout.user == current_user
-        @tweet.delete
-      end
-    redirect "/workouts"
+    if logged_in?
+      @workout = Workout.find(params[:id])
+
+        if @workout && @workout.user == current_user
+
+          @workout.exercises.each do |exercise|
+            exercise.delete
+          end
+
+          @workout.delete
+        end
+
+      redirect "/users/#{current_user.id}"
+    else
+      redirect "/"
+    end
   end
 
 end

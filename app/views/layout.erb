@@ -17,13 +17,16 @@
     <div class="wrapper">
 
         <%= yield %>
-        
+
         <br>
         <br>
         <br>
         <br>
         <br>
-        <a href="/logout">Log Out</a>
+
+        <% if logged_in? %>
+          <a href="/logout">Log Out</a>
+        <% end %>
 
       <footer class="branding">
         <small>&copy; 2019 <strong>AppWorkoutLogger</strong></small>
